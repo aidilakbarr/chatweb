@@ -1,0 +1,19 @@
+# Node.js
+node_modules/
+
+# Client (React)
+client/node_modules/
+client/build/
+
+# Server (Node.js)
+server/node_modules/
+
+# Socket
+socket/node_modules/
+
+# Ignore logs and other generated files
+*.log
+/logs/
+
+# Ignore environment variables file
+.env
