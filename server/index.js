@@ -2,6 +2,8 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import userRoute from "./routes/userRoute.js";
+import chatRoute from "./routes/chatRoute.js";
+import messageRoute from "./routes/messageRoute.js";
 import db from "./configs/database.js";
 
 dotenv.config();
@@ -16,6 +18,8 @@ app.use(express.json());
 app.use(cors());
 
 app.use(userRoute);
+app.use(chatRoute);
+app.use(messageRoute);
 
 // app.use("/", (req, res) => {
 //   res.send("tes...");
