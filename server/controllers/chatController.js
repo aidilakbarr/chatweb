@@ -33,7 +33,7 @@ export const findUserChats = async (req, res) => {
       where: {
         members: {
           [Op.and]: [
-            literal(`JSON_CONTAINS(\`Chat\`.\`members\`, '["${userId}"]')`),
+            literal(`JSON_CONTAINS(\`Chat\`.\`members\`, '[${userId}]')`),
             // Add other conditions if needed
           ],
         },
