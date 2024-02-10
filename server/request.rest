@@ -1,8 +1,37 @@
+POST http://localhost:5000/chat
+Content-Type: application/json
+
+{
+    "firstId" : "1",
+    "secondId" : "2"
+}
+
+###
+GET http://localhost:5000/chat/2
+
+###
+GET http://localhost:5000/chat/find/1/2
+
+###
+POST  http://localhost:5000/message
+Content-Type: application/json
+
+{
+    "chatId" : "2",
+    "senderId" : "2",
+    "text" : "Hello world!"
+}
+
+###
+GET http://localhost:5000/messages/2
+
+
+###
 POST http://localhost:5000/register
 Content-Type: application/json
 
 {
-    "name": "aidil akbar",
-    "email": "aidil@gmail.com",
-    "password": "12345"
+    "name": "putra",
+    "email": "putra@gmail.com",
+    "password": "Aidil@123"
 }

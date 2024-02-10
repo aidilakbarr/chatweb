@@ -7,14 +7,15 @@ export const useFetchRecipients = (chat, user) => {
 
   let recipientId;
 
-  // console.log("chat", chat);
-
   if (Array.isArray(chat?.members)) {
+    console.log("4 : ", chat);
     recipientId = chat?.members?.find((id) => id != user?.id);
-  } else if (!chat) {
-    recipientId = undefined;
-  } else {
+  } else if (chat?.members) {
+    console.log("6 : ", chat);
     recipientId = JSON.parse(chat?.members).find((id) => id != user?.id);
+  } else {
+    console.log("5 : ", chat);
+    recipientId = undefined;
   }
 
   useEffect(() => {

@@ -11,6 +11,9 @@ function Chat() {
   const { userChat, isUserChatLoading, updateCurrentChat } =
     useContext(ChatContext);
 
+  console.log("userChat", userChat);
+  console.log("userChat", typeof userChat);
+
   return (
     <Container>
       <PotentialChat />
@@ -18,13 +21,14 @@ function Chat() {
         <Stack direction="horizontal" gap={4} className="align-items-start">
           <Stack className="messages-box flex-grow-0 pe-3" gap={3}>
             {isUserChatLoading && <p>Loading chats...</p>}
-            {userChat?.map((chat, index) => {
-              return (
-                <div key={index} onClick={() => updateCurrentChat(chat)}>
-                  <UserChat chat={chat} user={user} />
-                </div>
-              );
-            })}
+            {typeof userChat == "object" &&
+              userChat?.map((chat, index) => {
+                return (
+                  <div key={index} onClick={() => updateCurrentChat(chat)}>
+                    <UserChat chat={chat} user={user} />
+                  </div>
+                );
+              })}
           </Stack>
           <ChatBox />
         </Stack>
