@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { ChatContext } from "../../context/ChatContext";
 import { useFetchRecipients } from "../../hooks/useFetchRecipient";
@@ -12,6 +12,18 @@ function ChatBox() {
     useContext(ChatContext);
   const { recipientUser } = useFetchRecipients(currentChat, user);
   const [textMessage, setTextMessage] = useState("");
+
+  // Kode untuk ketika ada pesan, Otomatis langsung scroll ke bawah
+  const messageEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    messageEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+  // tutup
 
   console.log("text", textMessage);
   if (!recipientUser)
@@ -47,13 +59,13 @@ function ChatBox() {
               </span>
             </Stack>
           ))}
-        {/* <span>{messages[0].text}</span> */}
+        <div ref={messageEndRef} />
       </Stack>
       <Stack direction="horizontal" gap={3} className="chat-input flex-grow-0">
         <InputEmoji
           value={textMessage}
           onChange={setTextMessage}
-          fontFamily="Oswald"
+          fontFamily="oswald"
           borderColor="rgba(72, 112, 223, 0.2)"
         />
         <button
