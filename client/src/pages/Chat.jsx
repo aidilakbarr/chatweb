@@ -11,9 +11,6 @@ function Chat() {
   const { userChat, isUserChatLoading, updateCurrentChat } =
     useContext(ChatContext);
 
-  console.log("userChat", userChat);
-  console.log("userChat", typeof userChat);
-
   return (
     <Container>
       <PotentialChat />

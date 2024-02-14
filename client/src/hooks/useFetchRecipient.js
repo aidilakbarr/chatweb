@@ -8,13 +8,10 @@ export const useFetchRecipients = (chat, user) => {
   let recipientId;
 
   if (Array.isArray(chat?.members)) {
-    console.log("4 : ", chat);
     recipientId = chat?.members?.find((id) => id != user?.id);
   } else if (chat?.members) {
-    console.log("6 : ", chat);
     recipientId = JSON.parse(chat?.members).find((id) => id != user?.id);
   } else {
-    console.log("5 : ", chat);
     recipientId = undefined;
   }
 

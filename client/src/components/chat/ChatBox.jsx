@@ -14,18 +14,13 @@ function ChatBox() {
   const [textMessage, setTextMessage] = useState("");
 
   // Kode untuk ketika ada pesan, Otomatis langsung scroll ke bawah
-  const messageEndRef = useRef(null);
-
-  const scrollToBottom = () => {
-    messageEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
+  const scroll = useRef();
 
   useEffect(() => {
-    scrollToBottom();
+    scroll.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
   // tutup
 
-  console.log("text", textMessage);
   if (!recipientUser)
     return (
       <p style={{ textAlign: "center", width: "100%" }}>
@@ -43,6 +38,7 @@ function ChatBox() {
         <strong>{recipientUser?.name}</strong>
       </div>
       <Stack gap={3} className="messages">
+        {console.log("messages", messages)}
         {Array.isArray(messages) &&
           messages.map((message, index) => (
             <Stack
@@ -52,14 +48,14 @@ function ChatBox() {
                   ? "message self align-self-end flex-grow-0"
                   : "message align-self-start flex-grow-0"
               }`}
+              ref={scroll}
             >
               <span>{message.text}</span>
               <span className="message-footer">
-                {moment(message.createAt).calendar()}
+                {moment(message.createdAt).calendar()}
               </span>
             </Stack>
           ))}
-        <div ref={messageEndRef} />
       </Stack>
       <Stack direction="horizontal" gap={3} className="chat-input flex-grow-0">
         <InputEmoji

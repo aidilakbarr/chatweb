@@ -19,15 +19,10 @@ export const AuthContextProvider = ({ children }) => {
     password: "",
   });
 
-  console.log("userr: ", user);
-  console.log("login info : ", loginInfo);
-
   useEffect(() => {
     const user = localStorage.getItem("User");
     setUser(JSON.parse(user));
   }, []);
-
-  console.log("register info: ", registerInfo);
 
   const updateRegisterInfo = useCallback((info) => {
     setRegisterInfo(info);
@@ -48,7 +43,6 @@ export const AuthContextProvider = ({ children }) => {
 
       setIsRegisterLoading(false);
 
-      console.log(response);
       if (response.error) {
         return setRegisterError(response);
       }
